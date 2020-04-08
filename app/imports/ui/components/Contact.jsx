@@ -7,6 +7,10 @@ import AddNote from '../components/AddNote';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Contact extends React.Component {
+  removeItem(docID) {
+    this.props.contact.remove(docID);
+  }
+
   render() {
     return (
         <Card centered>
@@ -30,6 +34,9 @@ class Contact extends React.Component {
               {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
             </Feed>
           </Card.Content>
+          <Card.Contact extra>
+            <button className="ui button" onClick={() => this.removeItem(this.props.contact.id)}>Delete</button>
+          </Card.Contact>
           <Card.Content extra>
             <AddNote owner={this.props.contact.owner} contactId={this.props.contact._id}/>
           </Card.Content>
